@@ -2,7 +2,7 @@ import streamlit as st
 import requests
 
 # Replace with your actual deployed FastAPI endpoint URL
-BACKEND_URL = "http://localhost:8080/predict"
+BACKEND_URL = "https://mvp-backend-581249984477.europe-west1.run.app"
 
 st.title("Medicine Recommender")
 
