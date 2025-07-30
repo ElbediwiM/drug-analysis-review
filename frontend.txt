@@ -1,7 +1,0 @@
-import requests
-
-user_input = st.text_input("Describe your condition:")
-if user_input:
-    response = requests.post("http://localhost:8000/predict", json={"condition": user_input})
-    prediction = response.json()["medicine"]
-    st.write("Recommended medicine:", prediction)
