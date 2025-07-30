@@ -20,3 +20,5 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+#Keep Raw Data folder locally run in my computer
+Raw_Data/
