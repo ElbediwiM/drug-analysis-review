@@ -1,0 +1,5 @@
+After you do docker run, it returns a URL for the uvicorn server running the API,
+so you can use it to see if the container and API is working. Note that you need to build the docker image
+specifically for production by specifying the region. Create a Makefile that provides aliases for
+Terminal commands. Do Direnv reload after changing environment variables and use environment variables
+in you Terminal commands.
