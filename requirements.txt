@@ -4,3 +4,7 @@ uvicorn
 python-dotenv
 streamlit
 fpdf
+gensim
+pandas
+numpy
+tensorflow
