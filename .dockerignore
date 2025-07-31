@@ -1,0 +1,15 @@
+# Ignore frontend folder except if you want to include some versions
+frontend/
+# Ignore Service urls
+package_folder/service_url.txt
+# Ignore git and other VCS files
+.git
+.gitignore
+# Ignore environment files, if any
+.env
+
+# Ignore Python virtual environment folders if present
+venv/
+
+# Ignore all notes
+notebook/notes.txt

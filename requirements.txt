@@ -1,5 +1,6 @@
-scikit-learn
+scikit-learn==1.6.1
 fastapi
 uvicorn
 python-dotenv
 streamlit
+fpdf
