@@ -2,17 +2,18 @@ import streamlit as st
 import requests
 
 # Replace with your actual deployed FastAPI endpoint URL
-BACKEND_URL = "https://mvp-backend-581249984477.europe-west1.run.app"
+BACKEND_URL = "https://mvp1-581249984477.europe-west1.run.app/predict"
 
 st.title("Medicine Recommender")
 
 # User input form
 with st.form("medicine_form"):
     age = st.number_input("Age", min_value=0, max_value=120, step=1)
-    gender = st.selectbox("Gender", ["male", "female", "other"])
+    gender = st.selectbox("Gender", ["male", "female"])
     condition = st.text_input("Medical condition")
     effectiveness = st.slider("How effective do you want the medicine to be?", 1, 5, 3)
     ease_of_use = st.slider("How easy should it be to use?", 1, 5, 3)
+    satisfaction = st.slider("How satisfied do you want to be?", 1, 5, 3)
 
     submitted = st.form_submit_button("Get Recommendation")
 
@@ -23,7 +24,8 @@ if submitted:
         "gender": gender,
         "condition": condition,
         "effectiveness": effectiveness,
-        "ease_of_use": ease_of_use
+        "ease_of_use": ease_of_use,
+        "satisfaction": satisfaction
     }
 
     try:

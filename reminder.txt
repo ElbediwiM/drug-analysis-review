@@ -1,1 +1,0 @@
-Remember to put the weights in a Docker container and push it

@@ -1,22 +1,23 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
-import pickle
+import pandas as pd
+import joblib
 
-from models.dummy_model import DummyMedicineModel
-
-# Load the dummy model
-with open("models/pickled_dummy_model.pkl", "rb") as f:
-    model = pickle.load(f)
+# Load the trained logistic regression model pipeline with joblib
+#Because it is more efficient for more complex and larger models
+with open("models/logisitc_model.pkl2", "rb") as f:  # spelling matches saved file
+    model = joblib.load(f)
 
 app = FastAPI()
 
-# Define input schema
+# Define the input schema expected by the API
 class PatientData(BaseModel):
     age: int
     gender: str
     condition: str
     ease_of_use: int
     effectiveness: int
+    satisfaction: int
 
 # Root endpoint
 @app.get("/")
@@ -26,6 +27,17 @@ def root():
 # Prediction endpoint
 @app.post("/predict")
 def predict_medicine(patient: PatientData):
-    input_data = patient.model_dump()  # single dict, not a list
-    prediction = model.predict(input_data)
+    # Prepare input data for model
+    input_df = pd.DataFrame([{
+        "Age": patient.age,
+        "EaseofUse": patient.ease_of_use,
+        "Sex": patient.gender,
+        "Effectiveness": patient.effectiveness,
+        "Satisfaction": patient.satisfaction,
+        "Condition": patient.condition
+    }])
+
+    # Predict drug recommendation
+    prediction = model.predict(input_df)
+
     return {"medicine": prediction[0]}

@@ -3,9 +3,10 @@ FROM python:3.10.6
 #FROM python:3.10-slim
 
 # Copy your app code and requirements into the container
-COPY package_folder/ package_folder/
-COPY models/ models/
-COPY requirements.txt
+COPY package_folder/__init__.py package_folder/__init__.py
+COPY package_folder/api_file.py package_folder/api_file.py
+COPY models/logisitc_model.pkl2 models/logisitc_model.pkl2
+COPY requirements.txt requirements.txt
 
 # Install Python dependencies
 RUN pip install -r requirements.txt
