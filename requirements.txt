@@ -13,6 +13,5 @@ numpy
 matplotlib
 seaborn
 joblib
-scikit-learn
 gensim
 nltk
