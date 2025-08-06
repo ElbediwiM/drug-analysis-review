@@ -15,6 +15,10 @@ Do pip install -r requirements after pulling from main to install the requiremen
 so that your environment is updated with the packages they are using.
 Make sure that you use the folder structure from Ben
 
+Try to install Gemini on terminal - can help you debug
+
+
+
 
 
 For Mohammed's model, not that Sex is in the dataset but not used in the pipeline - not sure if it will still work
@@ -34,3 +38,120 @@ Mohammed is trying new models like XGBoost with Tom's smaller dataset.
 Have a 5 medicines predicted - with the probability of them working.
 Add a dropdown menu for the conditions
 Remove other for the gender.
+
+After pulling, remember to open a new branch and remove the notes from that.
+
+Fix buggy UI - only gives you a new medicine if you input all the items again - if you just change one, it
+will not give you a new one. Also, some of the medicine recommendations are weird - need to check them out
+
+Make the dropdown menu in Streamlit so that if you enter a letter for the medical conditios box, it gives
+you possible medical conditions
+
+
+I am running into an error when using the Streamlit UI - when I enter values into all the fields - age, gender, condition, etc., and hit the submit button, I get a recommendation. However, when I change the value of 1 field like condition and keep the others the same as previously, I get the same recommendation - the UI is not saving the old values for the fields as the new values for the fields.
+
+Probably need 3 API files when you deploy 3 models - only 1 docker container needed.
+
+YOU DON'T NEED SATISFACTION, EFFECTIVENESS, OR EASE OF USE AS PARAMETERS IN THE MODEL -
+ONLY A NUTJOB WOULD PUT THAT THEY WANT TO HAVE A SATISFACTION OF 1, EFFECTIVENESS OF 1, ETC.
+JUST USE AGE, GENDER, AND CONDITION AS THE PARAMETERS TO GET THE BEST!! MEDICINE FOR THE USER
+BECAUSE THERE ARE MULTIPLE MEDICINES FOR EACH CONDITION! WHICH MODEL WOULD WORK FOR THIS?
+I CAN BUILD A SEARCH FUNCTION IN THE UI TO ALLOW THE USER TO SELECT THEIR CONDITION, AND
+ASK THE UI TO SAY IF THE CONDITION IS NOT IN THE DATASET - SORRY, THIS CONDITION IS NOT FOUND
+WHAT WOULD BE NICE IS TO HAVE THE 5 TOP MEDICINES FOR EACH CONDITION - BUT THE MODEL NEEDS TO DO THAT!
+
+Remove the ease of use, effectiveness, and satisfaction - add this information for the user
+
+from google.colab import files
+uploaded = files.upload()
+This here is the code to upload a file, it opens up a finder window where you select a file.
+Then you just do df = pd.read_csv("file name") and whatever steps you want.
+
+
+Tom took column I - reviews, vs column J - satisfaction - built a neural network to predict satisfaction
+based on reviews. Carmen is doing the same thing but with a worse model.
+
+Instead if you input condition and drug, it will predict satisfaction based on reviews.
+
+1 text box for condition
+2nd for drug
+Satisfaction predicted based on reviews from the model - with accuracy printed.
+
+Just add to the UI something that says if a condition is present in the dataset.
+
+Get the model to predict dosage - linear regression
+
+Get the model to find out if the user already uses a type of medicine (add
+that as an input field) and recommend a medicine based on that info - need
+a dataset that tells you what drugs you shouldn't take if you are taking a
+certain drug
+
+Jen suggested a static database to store the output from Tom and Carmen's model and add
+the reviews and satisfaction and side effects.
+
+For any logistic regression model, you need strong predictors, age, gender,
+and condition are not strong predictors, but age is a decent predictor.
+
+For demo day, can only choose factors that change the medicine
+
+For Carmen, her model predicts patient satisfaction for a an inputted drug
+based on the reviews
+
+Tom wants 2 outputs - accuracy level and satisfaction for 1 condition and 1 drug based on reviews.
+Could have satisfaction parameter - what is the minimum level of satisfaction you want.
+
+Create Excel file with a list of conditions then put it into Chat GPT. Tell it, here is a list
+of condition that I want to have - create a autocomplete function for this stuff. Then add all the conditions
+that are there in the dataset.
+
+
+Start deploying Carmen's model and developing UI for it.
+
+
+Updates:
+Tom has created a model that gives you a list of drugs if you input a condition
+and its minimum effectiveness
+Tom's NLP analysis could be for doctors to do better recommendations for patients
+Tom filters the data based on minimum effectiveness and only outputs drugs
+that have an effectiveness bigger than the minimum effectiveness
+Work with Tom to train his model in the cloud - having all of his compute resources there
+He needs to train his model on a bigger dataset
+Static database
+You are a doctor - there are so many medicines - on the frontend, you don't only get the drug
+but the reviews and satisfaction/effectiveness for a condition.
+How are we doing the presentation - is it the UI or Marc's powerpoint?
+Can change frontend to not send
+Can rephrase and reanme effectiveness - if level of headache is 2, than we
+need effectiveness as 2. So we rename effectiveness to pain_level because
+effectiveness means pain_level. We stick to 5 conditions on the backend and set default values so that
+the frontend
+
+Things to do today:
+Mohammed's model will give us 3 drugs
+Need to create a set of side effects and reviews
+Need to return effectiveness
+One drug, satisfaction and reviews, which fits doctor
+Keep sliders to effectiveness
+Ever
+
+Use Mohammed's model as frontend, have other tab with carmen's model, don't use
+it in presentation and say that it is under development.
+Just deploy 1 more docker image - 1 endpoint for Carmen's model and 1 endpoint for the other.
+Create other artifact repo, push other image, get other url with Carmen's model.
+
+1 tab with carmen's model and another for mohammed's model. Both for doctors. For Carmen's model,
+when it gives you the satisfaction value, you will add a few reviews/side effects.
+
+Just need Carmen's pickel file she sent you.
+
+Can change the frontend to not have questions in it like What effectiveness should the medicine have?
+
+choose features to input into model that work.
+
+Questions:
+1.What are the features of Mohammed's model - do they still include satisfaction, effectiveness, etc.
+2.Do I need another API file for Carmen's model or can I weave it in with the prediction endpoint?
+3.How do I add Carmen's model to the same Docker container? If I do COPY and all the commands again
+to deploy it, won't it create a new container?
+4.What is the main use case of the tool? The user is the doctor.
+5.Marc says to add a reset button? I think this is good.
