@@ -33,8 +33,8 @@ conditions_list = [
 ]
 
 # -- Page Config
-st.set_page_config(page_title="Drug Analysis App", layout="centered")
-st.title(":pill: Drug Analysis App")
+st.set_page_config(page_title="Drug Recommendation App", layout="centered")
+st.title(":pill: Drug Recommendation App")
 
 # -- Navigation UI
 view_choice = st.radio("Choose what you want to do:", ["View Presentation", "Use the App"])
