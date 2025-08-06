@@ -3,7 +3,6 @@ import requests
 
 BACKEND_URL = "https://mvp1-581249984477.europe-west1.run.app/predict"
 
-# Your list of conditions
 conditions_list = ['Other',
  'Pain',
  'High Blood Pressure',
@@ -55,18 +54,15 @@ conditions_list = ['Other',
  'Manic-Depression',
  'Acute Bacterial Infection of the Sinuses']
 
-# Sort conditions alphabetically (case-insensitive)
-conditions_list = sorted(conditions_list, key=lambda x: x.lower())
-
-st.title("Medicine Recommender")
+st.title("💊 Medicine Recommender")
 
 with st.form("medicine_form"):
     age = st.number_input("Age", min_value=0, max_value=120, step=1, key="age")
     gender = st.selectbox("Gender", ["male", "female"], key="gender")
     condition = st.selectbox("Medical condition", conditions_list, key="condition")
-    effectiveness = st.slider("How effective do you want the medicine to be?", 1, 5, 3, key="effectiveness")
-    ease_of_use = st.slider("How easy should it be to use?", 1, 5, 3, key="ease_of_use")
-    satisfaction = st.slider("How satisfied do you want to be?", 1, 5, 3, key="satisfaction")
+    effectiveness = st.slider("How effective should the medicine be?", 1, 5, 3, key="effectiveness")
+    ease_of_use = st.slider("How easy should it be for the patient to use the medicine?", 1, 5, 3, key="ease_of_use")
+    satisfaction = st.slider("How satisfied with the medicine can the patient be?", 1, 5, 3, key="satisfaction")
 
     submitted = st.form_submit_button("Get Recommendation")
 
@@ -75,7 +71,7 @@ if submitted:
         "age": st.session_state["age"],
         "gender": st.session_state["gender"],
         "condition": st.session_state["condition"],
-        "effectiveness": st.session_state["effectiveness"],
+        "effectiveness": st.session_state.get("effectiveness", 3),
         "ease_of_use": st.session_state["ease_of_use"],
         "satisfaction": st.session_state["satisfaction"]
     }
@@ -84,7 +80,7 @@ if submitted:
         response = requests.post(BACKEND_URL, json=data)
         if response.status_code == 200:
             recommendation = response.json().get("medicine", "No recommendation found.")
-            st.success(f"💊 Recommended medicine: **{recommendation}**")
+            st.success(f"💊 Your recommended medicine: **{recommendation}**")
         else:
             st.error(f"Error: {response.status_code} - {response.text}")
     except Exception as e:
