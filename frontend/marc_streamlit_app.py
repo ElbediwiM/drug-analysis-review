@@ -240,7 +240,7 @@ if "reset_form" not in st.session_state:
 # -- Navigation UI with enhanced styling
 st.markdown('''
 <div class="radio-container">
-    <div class="radio-title" style="font-size: 2.2rem !important;">🎯 CHOOSE WHAT YOU WANT TO DO:</div>''', unsafe_allow_html=True)
+    <div class="radio-title" style="font-size: 2.2rem !important;">🎯 Choose what do you want to do:</div>''', unsafe_allow_html=True)
 view_choice = st.radio(
     "🎯 Choose what you want to do:",
     ["🎬 View Presentation", "💊 Use the App"],
