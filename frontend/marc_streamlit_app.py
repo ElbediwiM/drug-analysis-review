@@ -64,7 +64,7 @@ st.markdown("""
     
     /* Section headers */
     .section-header {
-        font-size: 2.7rem !important;
+        font-size: 2rem !important;
         font-weight: 700 !important;
         color: #2c3e50 !important;
         margin: 0.5rem 0 !important;
@@ -95,7 +95,7 @@ st.markdown("""
     
     /* Radio button styling */
     .stRadio label {
-        font-size: 2rem !important;
+        font-size: 2.5rem !important;
         font-weight: 700 !important;
         color: #2c3e50 !important;
     }
@@ -262,7 +262,7 @@ if view_choice == "🎬 View Presentation":
 # 💊 Use the App
 # -------------------------
 elif view_choice == "💊 Use the App":
-    st.markdown('<h2 class="section-header">💊 Get Your Personalized Medicine Recommendation</h2>', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-header">💊 Get The Medicine Recommendation</h2>', unsafe_allow_html=True)
     # Handle reset form
     if st.session_state.get("reset_form", False):
         st.session_state["age"] = 25
