@@ -90,7 +90,7 @@ st.markdown("""
         font-size: 2rem !important;
         font-weight: 600 !important;
         color: #2c3e50 !important;
-        margin-bottom: 0.5rem !important;
+        margin-bottom: 0.8rem !important;
     }
     
     /* Radio button styling */
@@ -105,13 +105,14 @@ st.markdown("""
     .stNumberInput input,
     .stTextInput input,
     .stTextArea textarea {
-        font-size: 1rem !important;
-        padding: 0.75rem 1rem !important;
+        font-size: 1.5rem !important;
+        height: auto !important;
+        padding: 1rem 1.2rem !important;
     }
     
     /* Slider values */
     .stSlider .st-bd {
-        font-size: 1rem !important;
+        font-size: 1.4rem !important;
     }
     
     /* Button styling */
