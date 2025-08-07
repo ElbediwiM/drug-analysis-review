@@ -36,22 +36,6 @@ conditions_list = [
 st.set_page_config(page_title="Drug Recommendation App", layout="centered")
 st.title(":pill: Drug Recommendation App")
 
-# -- Helper Function
-def load_css_from_url(url: str ):
-    """Fetches and injects CSS from a URL into the Streamlit app."""
-    try:
-        response = requests.get(url)
-        response.raise_for_status()  # Raise an exception for bad status codes
-        st.markdown(f"<style>{response.text}</style>", unsafe_allow_html=True)
-    except requests.exceptions.RequestException as e:
-        st.warning(f"Failed to load CSS from {url}. Error: {e}")
-    except Exception as e:
-        st.error(f"An unexpected error occurred while loading CSS: {e}")
-
-# -- Page Setup
-st.set_page_config(page_title="Drug Recommendation App", layout="centered")
-load_css_from_url(CSS_URL) # Load custom CSS
-st.title(":pill: Drug Recommendation App")
 
 # Function to reset form fields
 def reset_form():
