@@ -36,7 +36,7 @@ conditions_list = [
 st.set_page_config(page_title="Drug Recommendation App", layout="centered")
 st.title(":pill: Drug Recommendation App")
 
-CSS_URL = "https://raw.githubusercontent.com/your-username/your-repo-name/main/frontend/style.css"
+CSS_URL = "https://raw.githubusercontent.com/ElbediwiM/drug-analysis-review/refs/heads/main/frontend/style.css"
 load_css_from_url(CSS_URL )
 
 st.title(":pill: Drug Recommendation App")
