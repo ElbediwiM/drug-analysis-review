@@ -12,7 +12,7 @@ PRESENTATION_DOWNLOAD = "https://onedrive.live.com/download?resid=591D3DA00F260D
 
 # -- Conditions
 conditions_list = [
-    'Other', 'Pain', 'High Blood Pressure', 'Depression', 'Birth Control',
+    'Pain', 'Other', 'High Blood Pressure', 'Depression', 'Birth Control',
     'Neuropathic Pain', 'Chronic Trouble Sleeping', 'Type 2 Diabetes Mellitus',
     'Attention Deficit Disorder with Hyperactivity', 'Bipolar Depression',
     'Migraine Prevention', 'Panic Disorder', 'Major Depressive Disorder', 'Overweight',
@@ -35,6 +35,21 @@ conditions_list = [
 # -- Page Config
 st.set_page_config(page_title="Drug Recommendation App", layout="centered")
 st.title(":pill: Drug Recommendation App")
+
+# Inject custom CSS
+with open("style.css") as f:
+    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+st.title(":pill: Drug Recommendation App")
+
+# Function to reset form fields
+def reset_form():
+    st.session_state["age"] = 0
+    st.session_state["gender"] = "male"
+    st.session_state["condition"] = "Pain"
+    st.session_state["effectiveness"] = 3
+    st.session_state["ease_of_use"] = 3
+    st.session_state["satisfaction"] = 3
 
 # -- Navigation UI
 view_choice = st.radio("Choose what you want to do:", ["View Presentation", "Use the App"])
