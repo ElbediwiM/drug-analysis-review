@@ -67,8 +67,8 @@ st.markdown("""
         font-size: 2.7rem !important;
         font-weight: 700 !important;
         color: #2c3e50 !important;
-        margin: 1rem 0 !important;
-        padding: 1rem !important;
+        margin: 000.5rem 0 !important;
+        padding: 0.5rem !important;
         background: linear-gradient(90deg, #74b9ff, #0984e3);
         border-radius: 15px !important;
         text-align: center !important;
@@ -78,10 +78,10 @@ st.markdown("""
     /* Form container */
     .form-container {
         background: rgba(255, 255, 255, 0.95) !important;
-        padding: 2.5rem !important;
+        padding: 1.5rem !important;
         border-radius: 20px !important;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
-        margin: 2rem 0 !important;
+        margin: 0.5rem 0 !important;
         border: 2px solid #e74c3c !important;
     }
     
@@ -262,7 +262,6 @@ if view_choice == "🎬 View Presentation":
 elif view_choice == "💊 Use the App":
     st.markdown('<div class="form-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="section-header">💊 Get Your Personalized Medicine Recommendation</h2>', unsafe_allow_html=True)
-
     # Handle reset form
     if st.session_state.get("reset_form", False):
         st.session_state["age"] = 25
