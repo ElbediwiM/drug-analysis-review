@@ -252,7 +252,7 @@ st.markdown('</div>', unsafe_allow_html=True)
 if view_choice == "🎬 View Presentation":
     st.markdown('<div class="presentation-container">', unsafe_allow_html=True)
     st.markdown('<h2 class="section-header">🎬 Project Presentation</h2>', unsafe_allow_html=True)
-    components.html(PRESENTATION_IFRAME, height=550)
+    components.html(PRESENTATION_IFRAME, height=600)
     st.markdown(f'<a href="{PRESENTATION_DOWNLOAD}" class="download-link" target="_blank">⬇️ Download PDF Presentation</a>', unsafe_allow_html=True)
     st.markdown('</div>', unsafe_allow_html=True)
 
