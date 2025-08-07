@@ -36,9 +36,18 @@ conditions_list = [
 st.set_page_config(page_title="Drug Recommendation App", layout="centered")
 st.title(":pill: Drug Recommendation App")
 
-# Inject custom CSS
-with open("style.css") as f:
-    st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+# Inject custom CSS using a path relative to the script
+try:
+    # Get the absolute path to the directory where the script is located
+    script_dir = os.path.dirname(os.path.abspath(__file__))
+    # Join the script's directory with the CSS file name
+    css_file_path = os.path.join(script_dir, "style.css")
+    
+    with open(css_file_path) as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+except FileNotFoundError:
+    # You can remove this error message in production if you want
+    st.warning("style.css not found. Running with default styles.")
 
 st.title(":pill: Drug Recommendation App")
 
