@@ -38,7 +38,7 @@ st.markdown("""
     /* Main app styling */
     .main {
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 2rem;
+        padding: 0rem;
     }
     
     /* Title styling */
@@ -67,8 +67,8 @@ st.markdown("""
         font-size: 2.7rem !important;
         font-weight: 700 !important;
         color: #2c3e50 !important;
-        margin: 1.5rem 0 !important;
-        padding: 1rem !important;
+        margin: 0rem 0 !important;
+        padding: 0rem !important;
         background: linear-gradient(90deg, #74b9ff, #0984e3);
         border-radius: 15px !important;
         text-align: center !important;
