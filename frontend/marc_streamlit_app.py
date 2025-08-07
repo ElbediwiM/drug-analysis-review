@@ -357,8 +357,7 @@ elif view_choice == "💊 Use the App":
                         </p>
                         <p style="font-size: 1rem; opacity: 0.9;">
                             This recommendation is based on the patient profile. 
-                            
-                        </p>
+                 
                     </div>
                     ''', unsafe_allow_html=True)
                 else:
