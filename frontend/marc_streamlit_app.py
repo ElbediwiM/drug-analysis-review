@@ -87,7 +87,7 @@ st.markdown("""
     
     /* Input labels */
     .stSelectbox label, .stNumberInput label, .stSlider label, .stTextInput label, .stTextArea label {
-        font-size: 1.5rem !important;
+        font-size: 1.7rem !important;
         font-weight: 600 !important;
         color: #2c3e50 !important;
         margin-bottom: 0.5rem !important;
@@ -105,13 +105,13 @@ st.markdown("""
     .stNumberInput input,
     .stTextInput input,
     .stTextArea textarea {
-        font-size: 1.3rem !important;
+        font-size: 1rem !important;
         padding: 0.75rem 1rem !important;
     }
     
     /* Slider values */
     .stSlider .st-bd {
-        font-size: 1.3rem !important;
+        font-size: 1rem !important;
     }
     
     /* Button styling */
