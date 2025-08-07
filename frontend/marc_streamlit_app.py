@@ -33,48 +33,29 @@ conditions_list = [
 ]
 
 # -- Custom CSS Styling
+# -- Custom CSS Styling
 st.markdown("""
 <style>
-    /* Target ONLY the form labels */
-    div[data-testid="stNumberInput"] label p,
-    div[data-testid="stSelectbox"] label p,
-    div[data-testid="stSlider"] label p {
-        font-size: 1.8rem !important;
-        font-weight: 700 !important;
-        color: #2c3e50 !important;
-        margin-bottom: 0.8rem !important;
+    /* Main app styling */
+    .main {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 1rem;
     }
     
-    /* Keep input values normal size */
-    .stNumberInput input,
-    .stSelectbox div[data-baseweb="select"],
-    .stSlider div[data-baseweb="slider"] {
-        font-size: 1rem !important;
-    }
-    
-    /* Make sure emojis scale with labels */
-    div[data-testid="stNumberInput"] label p span,
-    div[data-testid="stSelectbox"] label p span,
-    div[data-testid="stSlider"] label p span {
-        font-size: 1.8rem !important;
-    }
-</style>
-""", unsafe_allow_html=True)
-    
-/* Title styling */
-   .main-title {
-      font-size: 3.5rem !important;
-      font-weight: 800 !important;
-      color: #ffffff !important;
-      text-align: center !important;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
-      margin-bottom: 2rem !important;
-      padding-bottom: 1rem !important;
-      background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
-      background-size: 400% 400%;
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: gradient 3s ease infinite;
+    /* Title styling */
+    .main-title {
+        font-size: 3.5rem !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        text-align: center !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
+        margin-bottom: 2rem !important;
+        padding-bottom: 1rem !important;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient 3s ease infinite;
     }
     
     @keyframes gradient {
