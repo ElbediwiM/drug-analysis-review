@@ -61,7 +61,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
     
-  /* Title styling */
+/* Title styling */
     .main-title {
         font-size: 3.5rem !important;
         font-weight: 800 !important;
