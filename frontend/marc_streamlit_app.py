@@ -1,236 +1,93 @@
-import pandas as pd
-import numpy as np
 import streamlit as st
-import altair as alt
-import time
-from io import BytesIO
-import html
-import fpdf
-from sklearn.preprocessing import OneHotEncoder
-from sklearn.compose import ColumnTransformer
-from sklearn.linear_model import LogisticRegression
-from sklearn.pipeline import Pipeline
+import streamlit.components.v1 as components
+import requests
 
-st.set_page_config(page_title="💊 Drug Review App", layout="wide", page_icon="💊")
+# -- Config
+BACKEND_URL = "https://mvp1-581249984477.europe-west1.run.app/predict"
+PRESENTATION_IFRAME = """
+<iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSd6sqMH6BgucBaB7Evgw9VlVbc93lF7jjsKkO7PlNmoI84wCqUHbjUoKXNYtoxXO8MeLF-oCLlBoB1/pubembed?start=false&loop=false&delayms=3000"
+  frameborder="0" width="100%" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+"""
+PRESENTATION_DOWNLOAD = "https://onedrive.live.com/download?resid=591D3DA00F260D17%211352&authkey=!ANL3EMmxUjDFm2g"
 
-st.markdown("""
-    <style>
-    html, body, [class*="css"] {
-        font-size: 18px !important;
-        background-color: #FEECEC;
-    }
-    .stApp {
-        background-image: url("https://raw.githubusercontent.com/lewagon/data-images/master/logo/lewagon-logo-png_seeklogo-586296.png");
-        background-repeat: no-repeat;
-        background-position: center 80px;
-        background-size: 220px;
-        opacity: 0.99;
-    }
-    .stButton>button {
-        font-size: 18px !important;
-        padding: 0.5em 1em;
-    }
-    td {
-        text-align: left !important;
-    }
-    </style>
-""", unsafe_allow_html=True)
+# -- Conditions
+conditions_list = [
+    'Pain', 'Other', 'High Blood Pressure', 'Depression', 'Birth Control',
+    'Neuropathic Pain', 'Chronic Trouble Sleeping', 'Type 2 Diabetes Mellitus',
+    'Attention Deficit Disorder with Hyperactivity', 'Bipolar Depression',
+    'Migraine Prevention', 'Panic Disorder', 'Major Depressive Disorder', 'Overweight',
+    'Repeated Episodes of Anxiety', 'Rheumatoid Arthritis', 'High Cholesterol',
+    'Disorder characterized by Stiff, Tender & Painful Muscles', 'Migraine Headache',
+    'Underactive Thyroid', 'Chronic Pain', 'Anxious', 'Acne', 'Cough',
+    '"Change of Life" Signs', 'Asthma', 'Joint Damage causing Pain and Loss of Function',
+    'Pain Originating From a Nerve', 'Condition in which Stomach Acid is Pushed Into the Esophagus',
+    'Stop Smoking', 'Muscle Spasm', 'Emptying of the Bowel', 'Osteoporosis',
+    'Decreased Bone Mass Following Menopause', 'Combined High Blood Cholesterol and Triglyceride Level',
+    'Chronic Pain with Narcotic Drug Tolerance', 'Bacterial Urinary Tract Infection',
+    'Abnormally Long or Heavy Periods', 'Enlarged Prostate', 'Inflammation of the Nose due to an Allergy',
+    'Disease of Ovaries with Cysts', 'Osteoarthritis of the Knee', 'Epileptic Seizure',
+    'Painful Periods', 'Extreme Discomfort in Calves when Sitting or Lying Down',
+    'Inability to have an Erection', 'Bipolar I Disorder with Most Recent Episode Mixed',
+    'Yeast Infection of Vagina and Vulva', 'Manic-Depression',
+    'Acute Bacterial Infection of the Sinuses'
+]
 
-st.title("💊 Drug Review Satisfaction Prediction App")
+# -- Page Config
+st.set_page_config(page_title="Drug Recommendation App", layout="centered")
+st.title(":pill: Drug Recommendation App")
 
-uploaded_file = st.file_uploader("📄 Upload your WebMD CSV file", type=["csv"])
 
-if uploaded_file:
-    @st.cache_data
-    def load_data(file):
-        df = pd.read_csv(file)
-        df['Age'] = df['Age'].replace({' ': np.nan, '6-Mar': '3-6', '12-Jul': '7-12'})
-        df['Age'] = df['Age'].fillna('Unknown')
-        df['Sex'] = df['Sex'].replace({' ': np.nan})
-        df['Sex'] = df['Sex'].fillna('Unknown')
-        df = df[(df['Satisfaction'] >= 1) & (df['Satisfaction'] <= 5)]
-        df = df[(df['Effectiveness'] >= 1) & (df['Effectiveness'] <= 5)]
-        df = df[(df['EaseofUse'] >= 1) & (df['EaseofUse'] <= 5)]
-        return df
+# Function to reset form fields
+def reset_form():
+    st.session_state["age"] = 0
+    st.session_state["gender"] = "male"
+    st.session_state["condition"] = "Pain"
+    st.session_state["effectiveness"] = 3
+    st.session_state["ease_of_use"] = 3
+    st.session_state["satisfaction"] = 3
 
-    df = load_data(uploaded_file)
+# -- Navigation UI
+view_choice = st.radio("Choose what you want to do:", ["View Presentation", "Use the App"])
 
-    @st.cache_resource
-    def train_model(dataframe):
-        features = ['Age', 'Condition', 'Sex', 'Effectiveness', 'EaseofUse']
-        target = 'Satisfaction'
-        X = dataframe[features]
-        y = dataframe[target]
-        categorical_features = ['Age', 'Condition', 'Sex']
-        preprocessor = ColumnTransformer(
-            transformers=[('cat', OneHotEncoder(handle_unknown='ignore'), categorical_features)],
-            remainder='passthrough'
-        )
-        model = Pipeline([
-            ('preprocessor', preprocessor),
-            ('classifier', LogisticRegression(multi_class='multinomial', solver='lbfgs', max_iter=1000))
-        ])
-        model.fit(X, y)
-        return model
+# -------------------------
+# :film_frames: View Presentation
+# -------------------------
+if view_choice == "View Presentation":
+    st.markdown("### :film_projector: Project Presentation")
+    components.html(PRESENTATION_IFRAME, height=550)
+    st.markdown(f"[⬇️ Download PDF]({PRESENTATION_DOWNLOAD})")
 
-    with st.spinner('⏳ Training model...'):
-        progress_train = st.progress(0)
-        time.sleep(0.5)
-        progress_train.progress(25)
-        time.sleep(0.5)
-        progress_train.progress(50)
-        time.sleep(0.5)
-        progress_train.progress(75)
-        model_pipeline = train_model(df)
-        time.sleep(0.5)
-        progress_train.progress(100)
+# -------------------------
+# :pill: Use the App
+# -------------------------
+elif view_choice == "Use the App":
+    st.markdown("### :pill: Get Your Personalized Medicine Recommendation")
 
-    def get_age_category(age):
-        if age >= 75: return '75 or over'
-        elif age >= 65: return '65-74'
-        elif age >= 55: return '55-64'
-        elif age >= 45: return '45-54'
-        elif age >= 35: return '35-44'
-        elif age >= 25: return '25-34'
-        elif age >= 19: return '19-24'
-        elif age >= 13: return '13-18'
-        elif age >= 7: return '7-12'
-        elif age >= 3: return '3-6'
-        elif age >= 0: return '0-2'
-        else: return 'Unknown'
+    with st.form("medicine_form"):
+        age = st.number_input("Age", min_value=0, max_value=120, step=1, key="age")
+        gender = st.selectbox("Gender", ["male", "female"], key="gender")
+        condition = st.selectbox("Medical condition", conditions_list, key="condition")
+        effectiveness = st.slider("Desired effectiveness", 1, 5, 3, key="effectiveness")
+        ease_of_use = st.slider("Ease of use", 1, 5, 3, key="ease_of_use")
+        satisfaction = st.slider("Expected satisfaction", 1, 5, 3, key="satisfaction")
+        submitted = st.form_submit_button("Get Recommendation")
 
-    def stars_string(value):
-        return "⭐️" * int(round(value)) + "☆" * (5 - int(round(value)))
+    if submitted:
+        data = {
+            "age": st.session_state["age"],
+            "gender": st.session_state["gender"],
+            "condition": st.session_state["condition"],
+            "effectiveness": st.session_state.get("effectiveness", 3),
+            "ease_of_use": st.session_state["ease_of_use"],
+            "satisfaction": st.session_state["satisfaction"]
+        }
 
-    def predict_by_gender(model, age_group, condition, effectiveness, ease):
-        inputs = []
-        for sex in ['Male', 'Female']:
-            inputs.append({
-                'Age': age_group,
-                'Condition': condition,
-                'Sex': sex,
-                'Effectiveness': effectiveness,
-                'EaseofUse': ease
-            })
-        df_inputs = pd.DataFrame(inputs)
-        preds = model.predict(df_inputs)
-        scores = {sex: int(score) for sex, score in zip(['Male', 'Female'], preds)}
-        scores['Both'] = int(round(np.mean(list(scores.values()))))
-        return scores
-
-    st.subheader("🎯 Predict Satisfaction")
-
-    age_mode = st.radio("Age selection", ["Select Group", "Enter Range"])
-    if age_mode == "Select Group":
-        age_group = st.selectbox("Age", options=[str(x) for x in [1, 6, 10, 13, 18, 25, 30, 40, 50, 60, 70, 80]])
-    else:
-        age_min = st.number_input("From Age", min_value=0, max_value=120, value=30)
-        age_max = st.number_input("To Age", min_value=0, max_value=120, value=39)
-        age_mid = (age_min + age_max) // 2
-        age_group = get_age_category(age_mid)
-
-    condition = st.selectbox("Condition", sorted(df['Condition'].unique()))
-    effectiveness = st.slider("Effectiveness", 1, 5, 3)
-    ease = st.slider("Ease of Use", 1, 5, 3)
-
-    if st.button("🔁 Recalculate Prediction"):
-        with st.spinner("Calculating prediction..."):
-            progress = st.progress(0)
-            time.sleep(0.5)
-            progress.progress(40)
-            results = predict_by_gender(model_pipeline, age_group, condition, effectiveness, ease)
-            progress.progress(100)
-
-        for gender, score in results.items():
-            st.success(f"{gender}: {score}/5 {stars_string(score)}")
-
-        st.markdown("### 📊 All Condition Ratings")
-        condition_stats = df.groupby('Condition').agg(
-            avg_satisfaction=('Satisfaction', 'mean'),
-            count=('Satisfaction', 'count')
-        ).reset_index()
-        condition_stats['avg_satisfaction'] = condition_stats['avg_satisfaction'].round(2)
-        condition_stats = condition_stats.sort_values('avg_satisfaction', ascending=False)
-        st.dataframe(condition_stats.style.set_properties(**{'text-align': 'left'}), use_container_width=True)
-
-        st.markdown("### 📈 Satisfaction Bar Chart")
-        chart = alt.Chart(condition_stats.head(10)).mark_bar().encode(
-            x='avg_satisfaction:Q',
-            y=alt.Y('Condition:N', sort='-x'),
-            color=alt.value('#ff4d4d')
-        ).properties(width=700, height=400)
-        st.altair_chart(chart, use_container_width=True)
-
-        st.markdown("### 📊 Top 5 Conditions per Age Range (All Genders)")
-        age_ranges = [(0, 20), (20, 30), (30, 40), (40, 50), (50, 60), (60, 70), (70, 80), (80, 90)]
-        age_labels = ["0–20", "20–30", "30–40", "40–50", "50–60", "60–70", "70–80", "80–90"]
-        age_chart_df = df.copy()
-
-        # Use midpoint mapping to Age label
-        def map_custom_range(age_text):
-            for (low, high), label in zip(age_ranges, age_labels):
-                try:
-                    mid = int(age_text.split('-')[0])
-                    if low <= mid < high:
-                        return label
-                except:
-                    return "Unknown"
-            return "Unknown"
-
-        age_chart_df['age_group_range'] = age_chart_df['Age'].apply(map_custom_range)
-
-        for label in age_labels:
-            st.markdown(f"#### 🔹 Age Range: {label}")
-            segment = age_chart_df[age_chart_df['age_group_range'] == label]
-            segment_stats = segment.groupby('Condition').agg(
-                avg_satisfaction=('Satisfaction', 'mean'),
-                count=('Satisfaction', 'count')
-            ).reset_index()
-            segment_stats = segment_stats[segment_stats['count'] >= 10].sort_values('avg_satisfaction', ascending=False).head(5)
-            if not segment_stats.empty:
-                chart = alt.Chart(segment_stats).mark_bar().encode(
-                    x=alt.X('avg_satisfaction:Q', title='Average Satisfaction'),
-                    y=alt.Y('Condition:N', sort='-x', title='Condition'),
-                    color=alt.value('#ff4d4d')
-                ).properties(width=700, height=300)
-                st.altair_chart(chart, use_container_width=True)
+        try:
+            response = requests.post(BACKEND_URL, json=data)
+            if response.status_code == 200:
+                recommendation = response.json().get("medicine", "No recommendation found.")
+                st.success(f":pill: Your recommended medicine: **{recommendation}**")
             else:
-                st.info("Not enough data in this age range.")
-
-
-    # 📄 PDF Export Section
-    def stars_string(value):
-        return "⭐️" * int(round(value)) + "☆" * (5 - int(round(value)))
-
-
-    def generate_pdf_from_df(dataframe):
-
-        buffer = BytesIO()
-        pdf = fpdf.FPDF()
-        pdf.add_page()
-        pdf.set_font("Arial", size=12)
-        pdf.cell(200, 10, txt="Drug Review Satisfaction Dashboard", ln=1, align='C')
-        pdf.ln(10)
-        for _, row in dataframe.iterrows():
-            stars = stars_string(row['avg_satisfaction'])
-            try:
-                line = f"{row['Condition']:<30} | Score: {row['avg_satisfaction']} / 5 | {stars} | Count: {row['count']}"
-                pdf.multi_cell(0, 10, txt=line.encode('latin-1', 'replace').decode('latin-1'))
-            except:
-                pdf.multi_cell(0, 10, txt="Encoding error in row")
-        pdf.output(buffer)
-        buffer.seek(0)
-        return buffer
-
-        buffer.seek(0)
-        return buffer
-
-    # Prepare and show download button
-    if 'condition_stats' in locals():
-        pdf_data = generate_pdf_from_df(condition_stats)
-        st.download_button(
-            label="📥 Export Dashboard (Full) as PDF",
-            data=pdf_data,
-            file_name="dashboard_full_export.pdf",
-            mime="application/pdf"
-        )
+                st.error(f":x: Error {response.status_code}: {response.text}")
+        except Exception as e:
+            st.error(f":warning: Request failed: {e}")
