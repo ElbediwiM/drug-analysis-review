@@ -32,218 +32,370 @@ conditions_list = [
     'Acute Bacterial Infection of the Sinuses'
 ]
 
+# -- Custom CSS Styling
+st.markdown("""
+<style>
+    /* Main app styling */
+    .main {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        padding: 2rem;
+    }
+    
+    /* Title styling */
+    .main-title {
+        font-size: 3.5rem !important;
+        font-weight: 800 !important;
+        color: #ffffff !important;
+        text-align: center !important;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
+        margin-bottom: 2rem !important;
+        background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
+        background-size: 400% 400%;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        animation: gradient 3s ease infinite;
+    }
+    
+    @keyframes gradient {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+    
+    /* Section headers */
+    .section-header {
+        font-size: 2.2rem !important;
+        font-weight: 700 !important;
+        color: #2c3e50 !important;
+        margin: 1.5rem 0 !important;
+        padding: 1rem !important;
+        background: linear-gradient(90deg, #74b9ff, #0984e3);
+        border-radius: 15px !important;
+        text-align: center !important;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1) !important;
+    }
+    
+    /* Form container */
+    .form-container {
+        background: rgba(255, 255, 255, 0.95) !important;
+        padding: 2.5rem !important;
+        border-radius: 20px !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+        margin: 2rem 0 !important;
+        border: 2px solid #e74c3c !important;
+    }
+    
+    /* Input labels */
+    .stSelectbox label, .stNumberInput label, .stSlider label, .stTextInput label, .stTextArea label {
+        font-size: 1.5rem !important;
+        font-weight: 600 !important;
+        color: #2c3e50 !important;
+        margin-bottom: 0.5rem !important;
+    }
+    
+    /* Radio button styling */
+    .stRadio label {
+        font-size: 1.6rem !important;
+        font-weight: 600 !important;
+        color: #2c3e50 !important;
+    }
+    
+    /* Input fields */
+    .stSelectbox div[data-baseweb="select"],
+    .stNumberInput input,
+    .stTextInput input,
+    .stTextArea textarea {
+        font-size: 1.3rem !important;
+        padding: 0.75rem 1rem !important;
+    }
+    
+    /* Slider values */
+    .stSlider .st-bd {
+        font-size: 1.3rem !important;
+    }
+    
+    /* Button styling */
+    .stButton > button {
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24) !important;
+        color: white !important;
+        font-size: 1.2rem !important;
+        font-weight: 700 !important;
+        border: none !important;
+        border-radius: 25px !important;
+        padding: 0.8rem 2rem !important;
+        box-shadow: 0 4px 15px rgba(238, 90, 36, 0.4) !important;
+        transition: all 0.3s ease !important;
+    }
+    
+    .stButton > button:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(238, 90, 36, 0.6) !important;
+    }
+    
+    /* Reset button styling */
+    .reset-button {
+        background: linear-gradient(45deg, #74b9ff, #0984e3) !important;
+        color: white !important;
+        font-size: 1.1rem !important;
+        font-weight: 600 !important;
+        border: none !important;
+        border-radius: 20px !important;
+        padding: 0.6rem 1.5rem !important;
+        box-shadow: 0 4px 15px rgba(116, 185, 255, 0.4) !important;
+        transition: all 0.3s ease !important;
+        margin-top: 1rem !important;
+    }
+    
+    /* Success message styling */
+    .success-message {
+        background: linear-gradient(45deg, #00b894, #00cec9) !important;
+        color: white !important;
+        font-size: 1.3rem !important;
+        font-weight: 600 !important;
+        padding: 1.5rem !important;
+        border-radius: 15px !important;
+        text-align: center !important;
+        box-shadow: 0 4px 15px rgba(0, 184, 148, 0.3) !important;
+        margin: 1rem 0 !important;
+    }
+    
+    /* Error message styling */
+    .error-message {
+        background: linear-gradient(45deg, #e17055, #d63031) !important;
+        color: white !important;
+        font-size: 1.2rem !important;
+        font-weight: 600 !important;
+        padding: 1.5rem !important;
+        border-radius: 15px !important;
+        text-align: center !important;
+        box-shadow: 0 4px 15px rgba(225, 112, 85, 0.3) !important;
+        margin: 1rem 0 !important;
+    }
+    
+    /* Presentation container */
+    .presentation-container {
+        background: rgba(255, 255, 255, 0.95) !important;
+        padding: 2rem !important;
+        border-radius: 20px !important;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
+        margin: 2rem 0 !important;
+    }
+    
+    /* Download link styling */
+    .download-link {
+        display: inline-block !important;
+        background: linear-gradient(45deg, #6c5ce7, #a29bfe) !important;
+        color: white !important;
+        text-decoration: none !important;
+        font-size: 1.2rem !important;
+        font-weight: 600 !important;
+        padding: 1rem 2rem !important;
+        border-radius: 25px !important;
+        box-shadow: 0 4px 15px rgba(108, 92, 231, 0.4) !important;
+        transition: all 0.3s ease !important;
+        margin-top: 1rem !important;
+    }
+    
+    .download-link:hover {
+        transform: translateY(-2px) !important;
+        box-shadow: 0 6px 20px rgba(108, 92, 231, 0.6) !important;
+        text-decoration: none !important;
+        color: white !important;
+    }
+    
+    /* Slider styling */
+    .stSlider > div > div > div > div {
+        background: linear-gradient(45deg, #ff6b6b, #ee5a24) !important;
+    }
+    
+    /* Hide Streamlit menu and footer */
+    #MainMenu {visibility: hidden;}
+    footer {visibility: hidden;}
+    header {visibility: hidden;}
+</style>
+""", unsafe_allow_html=True)
+
 # -- Page Config
-st.set_page_config(
-    page_title="Drug Recommendation App", 
-    layout="centered", 
-    page_icon="💊",
-    initial_sidebar_state="collapsed"
-)
+st.set_page_config(page_title="💊 Drug Recommendation App", layout="centered", initial_sidebar_state="collapsed")
 
-# Inject custom CSS
-st.markdown("""
-    <style>
-        /* Main background */
-        .stApp {
-            background-color: #fafafa;
-        }
-        
-        /* Radio buttons styling */
-        .st-bb {
-            background-color: white;
-        }
-        
-        /* Form elements */
-        .stTextInput, .stNumberInput, .stSelectbox, .stSlider {
-            background-color: white;
-            border-radius: 8px;
-            padding: 10px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        /* Buttons */
-        .stButton>button {
-            border: none;
-            color: white;
-            background-color: #4b2e83;
-            padding: 10px 20px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-            border-radius: 8px;
-            transition: all 0.3s;
-            width: 100%;
-        }
-        
-        .stButton>button:hover {
-            background-color: #3a2368;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
-        }
-        
-        /* Reset button specific styling */
-        .stButton>button:contains("Reset") {
-            background-color: #6c757d;
-        }
-        
-        /* Slider styling */
-        .stSlider>div>div>div>div {
-            background-color: #4b2e83;
-        }
-        
-        /* Tooltip styling */
-        .css-1qg05tj {
-            background-color: #4b2e83 !important;
-            color: white !important;
-        }
-        
-        /* Custom card styling */
-        .custom-card {
-            background-color: #e8f4f8;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #4b2e83;
-            margin-top: 20px;
-        }
-        
-        /* Title styling */
-        .custom-title {
-            color: #4b2e83;
-            font-family: "Arial Rounded MT Bold", sans-serif;
-        }
-        
-        /* Recommendation text */
-        .recommendation-text {
-            font-size: 24px;
-            font-weight: bold;
-            color: #2c7be5;
-        }
-    </style>
-""", unsafe_allow_html=True)
+# Custom title with animation
+st.markdown('<h1 class="main-title">💊 Drug Recommendation App</h1>', unsafe_allow_html=True)
 
-# Main title with emoji and custom styling
-st.markdown("""
-    <h1 class="custom-title" style='text-align: center;'>
-        💊 Drug Recommendation App
-    </h1>
-""", unsafe_allow_html=True)
-
-# Function to reset form fields
-def reset_form():
-    st.session_state["age"] = 0
+# Initialize session state if not exists
+if "age" not in st.session_state:
+    st.session_state["age"] = 25
+if "gender" not in st.session_state:
     st.session_state["gender"] = "male"
+if "condition" not in st.session_state:
     st.session_state["condition"] = "Pain"
+if "effectiveness" not in st.session_state:
     st.session_state["effectiveness"] = 3
+if "ease_of_use" not in st.session_state:
     st.session_state["ease_of_use"] = 3
+if "satisfaction" not in st.session_state:
     st.session_state["satisfaction"] = 3
+if "reset_form" not in st.session_state:
+    st.session_state["reset_form"] = False
 
-# -- Navigation UI with custom styling
-st.markdown("""
-    <div style='background-color: #f8f9fa; padding: 15px; border-radius: 10px; margin-bottom: 20px;'>
-        <h3 style='color: #4b2e83;'>Choose what you want to do:</h3>
-""", unsafe_allow_html=True)
-
-view_choice = st.radio("", ["View Presentation", "Use the App"], horizontal=True, label_visibility="collapsed")
-
-st.markdown("</div>", unsafe_allow_html=True)
+# -- Navigation UI with enhanced styling
+st.markdown('<div style="margin: 2rem 0;">', unsafe_allow_html=True)
+view_choice = st.radio(
+    "🎯 Choose what you want to do:",
+    ["🎬 View Presentation", "💊 Use the App"],
+    horizontal=True
+)
+st.markdown('</div>', unsafe_allow_html=True)
 
 # -------------------------
-# :film_frames: View Presentation
+# 🎬 View Presentation
 # -------------------------
-if view_choice == "View Presentation":
-    st.markdown("""
-        <div style='background-color: #e8f4f8; padding: 15px; border-radius: 10px; margin-bottom: 20px;'>
-            <h2 style='color: #4b2e83;'>🎬 Project Presentation</h2>
-        </div>
-    """, unsafe_allow_html=True)
-    
+if view_choice == "🎬 View Presentation":
+    st.markdown('<div class="presentation-container">', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-header">🎬 Project Presentation</h2>', unsafe_allow_html=True)
     components.html(PRESENTATION_IFRAME, height=550)
-    
-    st.markdown(f"""
-        <div style='text-align: center; margin-top: 20px;'>
-            <a href='{PRESENTATION_DOWNLOAD}' style='background-color: #4b2e83; color: white; padding: 10px 20px; text-align: center; text-decoration: none; display: inline-block; border-radius: 5px; font-weight: bold;'>
-                ⬇️ Download PDF
-            </a>
-        </div>
-    """, unsafe_allow_html=True)
+    st.markdown(f'<a href="{PRESENTATION_DOWNLOAD}" class="download-link" target="_blank">⬇️ Download PDF Presentation</a>', unsafe_allow_html=True)
+    st.markdown('</div>', unsafe_allow_html=True)
 
 # -------------------------
-# :pill: Use the App
+# 💊 Use the App
 # -------------------------
-elif view_choice == "Use the App":
-    st.markdown("""
-        <div style='background-color: #e8f4f8; padding: 15px; border-radius: 10px; margin-bottom: 20px;'>
-            <h2 style='color: #4b2e83;'>💊 Get Your Personalized Medicine Recommendation</h2>
-        </div>
-    """, unsafe_allow_html=True)
+elif view_choice == "💊 Use the App":
+    st.markdown('<div class="form-container">', unsafe_allow_html=True)
+    st.markdown('<h2 class="section-header">💊 Get Your Personalized Medicine Recommendation</h2>', unsafe_allow_html=True)
+
+    # Handle reset form
+    if st.session_state.get("reset_form", False):
+        st.session_state["age"] = 25
+        st.session_state["gender"] = "male"
+        st.session_state["condition"] = "Pain"
+        st.session_state["effectiveness"] = 3
+        st.session_state["ease_of_use"] = 3
+        st.session_state["satisfaction"] = 3
+        st.session_state["reset_form"] = False
 
     with st.form("medicine_form"):
-        # Create columns for layout
         col1, col2 = st.columns(2)
         
         with col1:
-            age = st.number_input("Age", min_value=0, max_value=120, step=1, key="age")
-            gender = st.selectbox("Gender", ["male", "female"], key="gender")
-            condition = st.selectbox("Medical condition", conditions_list, key="condition")
-            
+            age = st.number_input(
+                "👤 Age", 
+                min_value=0, 
+                max_value=120, 
+                step=1, 
+                value=st.session_state["age"],
+                key="age"
+            )
+            gender = st.selectbox(
+                "⚧️ Gender", 
+                ["male", "female"], 
+                index=0 if st.session_state["gender"] == "male" else 1,
+                key="gender"
+            )
+            condition = st.selectbox(
+                "🏥 Medical Condition", 
+                conditions_list, 
+                index=conditions_list.index(st.session_state["condition"]),
+                key="condition"
+            )
+        
         with col2:
-            effectiveness = st.slider("Desired effectiveness (1-5)", 1, 5, 3, key="effectiveness",
-                                    help="1 = Not important, 5 = Very important")
-            ease_of_use = st.slider("Ease of use (1-5)", 1, 5, 3, key="ease_of_use",
-                                  help="1 = Not important, 5 = Very important")
-            satisfaction = st.slider("Expected satisfaction (1-5)", 1, 5, 3, key="satisfaction",
-                                   help="1 = Not important, 5 = Very important")
-        
-        # Form buttons in columns
-        col_btn1, col_btn2, col_btn3 = st.columns([1, 1, 2])
-        
-        with col_btn1:
-            submitted = st.form_submit_button("Get Recommendation", 
-                                           help="Click to get your personalized medicine recommendation")
-        
-        with col_btn2:
-            reset_clicked = st.form_submit_button("Reset Form", 
-                                               help="Click to reset all fields to default values",
-                                               on_click=reset_form)
-        
-        # Add some space
-        st.markdown("<br>", unsafe_allow_html=True)
+            effectiveness = st.slider(
+                "⭐ Desired Effectiveness", 
+                1, 5, 
+                value=st.session_state["effectiveness"],
+                key="effectiveness"
+            )
+            ease_of_use = st.slider(
+                "🎯 Ease of Use", 
+                1, 5, 
+                value=st.session_state["ease_of_use"],
+                key="ease_of_use"
+            )
+            satisfaction = st.slider(
+                "😊 Expected Satisfaction", 
+                1, 5, 
+                value=st.session_state["satisfaction"],
+                key="satisfaction"
+            )
 
+        # Form buttons
+        col_submit, col_reset = st.columns([2, 1])
+        
+        with col_submit:
+            submitted = st.form_submit_button("🚀 Get My Recommendation", use_container_width=True)
+        
+        with col_reset:
+            reset_clicked = st.form_submit_button("🔄 Reset Form", use_container_width=True)
+
+    # Handle reset button click
+    if reset_clicked:
+        st.session_state["reset_form"] = True
+        st.rerun()
+
+    # Handle form submission
     if submitted:
         data = {
             "age": st.session_state["age"],
             "gender": st.session_state["gender"],
             "condition": st.session_state["condition"],
-            "effectiveness": st.session_state.get("effectiveness", 3),
+            "effectiveness": st.session_state["effectiveness"],
             "ease_of_use": st.session_state["ease_of_use"],
             "satisfaction": st.session_state["satisfaction"]
         }
 
-        try:
-            with st.spinner('🔍 Finding the best medicine for you...'):
-                response = requests.post(BACKEND_URL, json=data)
-                
-            if response.status_code == 200:
-                recommendation = response.json().get("medicine", "No recommendation found.")
-                st.markdown(f"""
-                    <div class="custom-card">
-                        <h3 style='color: #4b2e83;'>💊 Your Recommended Medicine:</h3>
-                        <p class="recommendation-text">{recommendation}</p>
-                        <p style='color: #666;'>Based on your preferences and medical condition.</p>
+        # Show loading spinner
+        with st.spinner('🔍 Analyzing your profile and finding the best recommendation...'):
+            try:
+                response = requests.post(BACKEND_URL, json=data, timeout=30)
+                if response.status_code == 200:
+                    recommendation = response.json().get("medicine", "No recommendation found.")
+                    st.markdown(f'''
+                    <div class="success-message">
+                        <h3>🎉 Your Personalized Recommendation</h3>
+                        <p style="font-size: 1.5rem; margin: 1rem 0;">
+                            <strong>💊 {recommendation}</strong>
+                        </p>
+                        <p style="font-size: 1rem; opacity: 0.9;">
+                            This recommendation is based on your profile and preferences. 
+                            Please consult with your healthcare provider before taking any medication.
+                        </p>
                     </div>
-                """, unsafe_allow_html=True)
-            else:
-                st.error(f"❌ Error {response.status_code}: {response.text}")
-        except Exception as e:
-            st.error(f"⚠️ Request failed: {e}")
+                    ''', unsafe_allow_html=True)
+                else:
+                    st.markdown(f'''
+                    <div class="error-message">
+                        <h3>❌ Error Occurred</h3>
+                        <p>Error {response.status_code}: {response.text}</p>
+                        <p>Please try again or contact support if the problem persists.</p>
+                    </div>
+                    ''', unsafe_allow_html=True)
+            except requests.exceptions.Timeout:
+                st.markdown('''
+                <div class="error-message">
+                    <h3>⏰ Request Timeout</h3>
+                    <p>The request took too long to process. Please try again.</p>
+                </div>
+                ''', unsafe_allow_html=True)
+            except Exception as e:
+                st.markdown(f'''
+                <div class="error-message">
+                    <h3>⚠️ Connection Error</h3>
+                    <p>Request failed: {str(e)}</p>
+                    <p>Please check your internet connection and try again.</p>
+                </div>
+                ''', unsafe_allow_html=True)
 
-# Add footer
+    st.markdown('</div>', unsafe_allow_html=True)
+
+# Footer
 st.markdown("""
-    <div style='text-align: center; margin-top: 50px; color: #666; font-size: 14px;'>
-        <hr style='border: 0.5px solid #eee;'>
-        <p>Drug Recommendation App • Powered by Streamlit</p>
-    </div>
+<div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 15px;">
+    <p style="color: #2c3e50; font-size: 1.1rem; font-weight: 500;">
+        🏥 <strong>Disclaimer:</strong> This app provides suggestions based on data analysis. 
+        Always consult with qualified healthcare professionals before making medical decisions.
+    </p>
+    <p style="color: #74b9ff; font-size: 1rem; margin-top: 1rem;">
+        Made with ❤️ using Streamlit | © 2024 Drug Recommendation System
+    </p>
+</div>
 """, unsafe_allow_html=True)
