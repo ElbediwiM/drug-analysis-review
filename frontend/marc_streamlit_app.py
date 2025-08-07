@@ -67,8 +67,8 @@ st.markdown("""
         font-size: 2rem !important;
         font-weight: 700 !important;
         color: #2c3e50 !important;
-        margin: 0.5rem 0 !important;
-        padding: 1rem !important;
+        margin: 1.2rem 0 !important;
+        padding: 1.2rem !important;
         background: linear-gradient(90deg, #74b9ff, #0984e3);
         border-radius: 15px !important;
         text-align: center !important;
