@@ -341,7 +341,7 @@ elif view_choice == "💊 Use the App":
         }
 
         # Show loading spinner
-        with st.spinner('🔍 Analyzing your profile and finding the best recommendation...'):
+        with st.spinner('🔍 Analyzing the profile and finding the best recommendation...'):
             try:
                 response = requests.post(BACKEND_URL, json=data, timeout=30)
                 if response.status_code == 200:
