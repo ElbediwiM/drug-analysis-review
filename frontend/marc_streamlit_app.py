@@ -105,14 +105,14 @@ st.markdown("""
     .stNumberInput input,
     .stTextInput input,
     .stTextArea textarea {
-        font-size: 1.5rem !important;
+        font-size: 1rem !important;
         height: auto !important;
-        padding: 1rem 1.2rem !important;
+        padding: 1rem 1rem !important;
     }
     
     /* Slider values */
     .stSlider .st-bd {
-        font-size: 1.4rem !important;
+        font-size: 1rem !important;
     }
     
     /* Button styling */
