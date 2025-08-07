@@ -35,11 +35,31 @@ conditions_list = [
 # -- Custom CSS Styling
 st.markdown("""
 <style>
-    /* Main app styling */
-    .main {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        padding: 1rem;
+    /* Target ONLY the form labels */
+    div[data-testid="stNumberInput"] label p,
+    div[data-testid="stSelectbox"] label p,
+    div[data-testid="stSlider"] label p {
+        font-size: 1.8rem !important;
+        font-weight: 700 !important;
+        color: #2c3e50 !important;
+        margin-bottom: 0.8rem !important;
     }
+    
+    /* Keep input values normal size */
+    .stNumberInput input,
+    .stSelectbox div[data-baseweb="select"],
+    .stSlider div[data-baseweb="slider"] {
+        font-size: 1rem !important;
+    }
+    
+    /* Make sure emojis scale with labels */
+    div[data-testid="stNumberInput"] label p span,
+    div[data-testid="stSelectbox"] label p span,
+    div[data-testid="stSlider"] label p span {
+        font-size: 1.8rem !important;
+    }
+</style>
+""", unsafe_allow_html=True)
     
     /* Title styling */
     .main-title {
