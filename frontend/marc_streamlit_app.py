@@ -356,8 +356,8 @@ elif view_choice == "💊 Use the App":
                             <strong>💊 {recommendation}</strong>
                         </p>
                         <p style="font-size: 1rem; opacity: 0.9;">
-                            This recommendation is based on your profile and preferences. 
-                            Please consult with your healthcare provider before taking any medication.
+                            This recommendation is based on the patient profile. 
+                            
                         </p>
                     </div>
                     ''', unsafe_allow_html=True)
