@@ -175,10 +175,10 @@ st.markdown("""
     /* Presentation container */
     .presentation-container {
         background: rgba(255, 255, 255, 0.95) !important;
-        padding: 2rem !important;
+        padding: 0 2rem 2rem 2rem !important;
         border-radius: 20px !important;
         box-shadow: 0 10px 30px rgba(0,0,0,0.2) !important;
-        margin: 2rem 0 !important;
+        margin: 0 0 2rem 0 !important;
     }
     
     /* Download link styling */
