@@ -6,7 +6,7 @@ import requests
 BACKEND_URL = "https://mvp1-581249984477.europe-west1.run.app/predict"
 PRESENTATION_IFRAME = """
 <iframe src="https://docs.google.com/presentation/d/e/2PACX-1vSd6sqMH6BgucBaB7Evgw9VlVbc93lF7jjsKkO7PlNmoI84wCqUHbjUoKXNYtoxXO8MeLF-oCLlBoB1/pubembed?start=false&loop=false&delayms=3000"
-  frameborder="0" width="100%" height="569" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
+  frameborder="0" width="100%" height="800" allowfullscreen="true" mozallowfullscreen="true" webkitallowfullscreen="true"></iframe>
 """
 PRESENTATION_DOWNLOAD = "https://onedrive.live.com/download?resid=591D3DA00F260D17%211352&authkey=!ANL3EMmxUjDFm2g"
 
