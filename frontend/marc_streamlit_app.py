@@ -95,8 +95,8 @@ st.markdown("""
     
     /* Radio button styling */
     .stRadio label {
-        font-size: 1.6rem !important;
-        font-weight: 600 !important;
+        font-size: 2rem !important;
+        font-weight: 700 !important;
         color: #2c3e50 !important;
     }
     
@@ -238,11 +238,14 @@ if "reset_form" not in st.session_state:
     st.session_state["reset_form"] = False
 
 # -- Navigation UI with enhanced styling
-st.markdown('<div style="margin: 2rem 0;">', unsafe_allow_html=True)
+st.markdown('''
+<div class="radio-container">
+    <div class="radio-title" style="font-size: 2.2rem !important;">🎯 CHOOSE WHAT YOU WANT TO DO:</div>''', unsafe_allow_html=True)
 view_choice = st.radio(
     "🎯 Choose what you want to do:",
     ["🎬 View Presentation", "💊 Use the App"],
-    horizontal=True
+    horizontal=True,
+    label_visibility="collapsed"
 )
 st.markdown('</div>', unsafe_allow_html=True)
 
@@ -319,7 +322,7 @@ elif view_choice == "💊 Use the App":
         col_submit, col_reset = st.columns([2, 1])
         
         with col_submit:
-            submitted = st.form_submit_button("🚀 Get My Recommendation", use_container_width=True)
+            submitted = st.form_submit_button("🚀 Drug Recommendation", use_container_width=True)
         
         with col_reset:
             reset_clicked = st.form_submit_button("🔄 Reset Form", use_container_width=True)
