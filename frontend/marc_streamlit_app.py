@@ -394,10 +394,10 @@ elif view_choice == "💊 Use the App":
 st.markdown("""
 <div style="text-align: center; margin-top: 3rem; padding: 2rem; background: rgba(255,255,255,0.1); border-radius: 15px;">
     <p style="color: #2c3e50; font-size: 1.1rem; font-weight: 500;">
-        🏥 <strong>Disclaimer:</strong> This app provides suggestions based on data analysis. 
+        🏥 <strong>Disclaimer:</strong> This app provides recommendations based on patients data analysis. 
     </p>
     <p style="color: #74b9ff; font-size: 1rem; margin-top: 1rem;">
-        Made with ❤️ using Streamlit | © 2024 Drug Recommendation System
+        Made with ❤️ using Streamlit | © 2025 Drug Recommendation System
     </p>
 </div>
 """, unsafe_allow_html=True)
