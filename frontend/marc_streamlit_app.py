@@ -90,7 +90,7 @@ st.markdown("""
     /* Input labels */
     .stSelectbox label, .stNumberInput label, .stSlider label, .stTextInput label, .stTextArea label {
         font-size: 2rem !important;
-        font-weight: 600 !important;
+        font-weight: 700 !important;
         color: #2c3e50 !important;
         margin-bottom: 0.8rem !important;
     }
