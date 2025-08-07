@@ -48,7 +48,8 @@ st.markdown("""
         color: #ffffff !important;
         text-align: center !important;
         text-shadow: 2px 2px 4px rgba(0,0,0,0.3) !important;
-        margin-bottom: 0rem !important;
+        margin-bottom: 2rem !important;
+        padding-bottom: 1rem !important;
         background: linear-gradient(45deg, #ff6b6b, #4ecdc4, #45b7d1, #96ceb4);
         background-size: 400% 400%;
         -webkit-background-clip: text;
@@ -68,6 +69,7 @@ st.markdown("""
         font-weight: 700 !important;
         color: #2c3e50 !important;
         margin: 1.2rem 0 !important;
+        margin-top: 2rem !important;
         padding: 1.2rem !important;
         background: linear-gradient(90deg, #74b9ff, #0984e3);
         border-radius: 15px !important;
