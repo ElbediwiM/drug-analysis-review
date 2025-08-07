@@ -64,7 +64,7 @@ st.markdown("""
     
     /* Section headers */
     .section-header {
-        font-size: 2.2rem !important;
+        font-size: 2.7rem !important;
         font-weight: 700 !important;
         color: #2c3e50 !important;
         margin: 1.5rem 0 !important;
@@ -87,7 +87,7 @@ st.markdown("""
     
     /* Input labels */
     .stSelectbox label, .stNumberInput label, .stSlider label, .stTextInput label, .stTextArea label {
-        font-size: 1.7rem !important;
+        font-size: 2rem !important;
         font-weight: 600 !important;
         color: #2c3e50 !important;
         margin-bottom: 0.5rem !important;
@@ -118,7 +118,7 @@ st.markdown("""
     .stButton > button {
         background: linear-gradient(45deg, #ff6b6b, #ee5a24) !important;
         color: white !important;
-        font-size: 1.2rem !important;
+        font-size: 1.7rem !important;
         font-weight: 700 !important;
         border: none !important;
         border-radius: 25px !important;
